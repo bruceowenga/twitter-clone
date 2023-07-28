@@ -1,9 +1,13 @@
 import Link from 'next/link';
-import { BiHomeCircle, BiSolidEnvelopeOpen, BiSolidUser } from 'react-icons/bi';
-import { BsBell, BsBookmarkFill, BsTwitter } from 'react-icons/bs';
+import { BiHomeCircle, BiUser } from 'react-icons/bi';
+import { BsBell, BsBookmark, BsTwitter, BsEnvelope } from 'react-icons/bs';
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 const NAVIGATION_ITEMS = [
+  {
+    title: 'Twitter',
+    icon: BsTwitter,
+  },
   {
     title: 'Home',
     icon: BiHomeCircle,
@@ -18,39 +22,39 @@ const NAVIGATION_ITEMS = [
   },
   {
     title: 'Messages',
-    icon: BiSolidEnvelopeOpen,
+    icon: BsEnvelope,
   },
   {
     title: 'Bookmarks',
-    icon: BsBookmarkFill,
+    icon: BsBookmark,
   },
   {
     title: 'Profile',
-    icon: BiSolidUser,
+    icon: BiUser,
   },
 ];
 
 const Home = () => {
   return (
     <div className="w-full h-full flex justify-center items-center relative bg-black">
-      <div className="max-w-screen-lg w-full h-full flex relative">
+      <div className="max-w-screen-xl w-full h-full flex relative">
         {/* Left sidebar */}
-        <section className="fixed w-72 flex flex-col h-screen">
-          <Link href="/">
-            <BsTwitter />
-          </Link>
+        <section className="fixed w-72 flex flex-col h-screen space-y-4 my-4">
           {NAVIGATION_ITEMS.map((item) => (
             <Link
               href={`/${item.title.toLowerCase}`}
               key={item.title}
-              className="bg-white/50 flex rounded-3xl p-4 items-center justify-center space-x-2"
+              className="hover:bg-white/10 text-2xl transition duration-200 flex rounded-3xl py-2 px-6 items-center justify-start w-fit space-x-4 "
             >
               <div>
                 <item.icon />
               </div>
-              <div>{item.title}</div>
+              {item.title !== 'Twitter' && <div>{item.title}</div>}
             </Link>
           ))}
+          <button className="w-full rounded-full bg-primary p-4 text-2xl text-center hover:bg-opacity-70 transition duration-200">
+            Tweet
+          </button>
         </section>
         <main></main>
         <section></section>
